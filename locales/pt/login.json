@@ -1,0 +1,12 @@
+{
+  "title": "Portal do Cliente",
+  "email-label": "Email",
+  "email-error": "Email é obrigatório.",
+  "email-error-format": "Email tem de ser um email válido.",
+  "password-label": "Palvra-passe",
+  "password-error": "Palvra-passe é obrigatória.",
+  "signIn": "Iniciar Sessão",
+  "invalidCredentials": "Credenciais Inválidas.",
+  "forgotPassword": "Esqueci-me da palavra-passe",
+  "loginSuccess": "Bem-vindo"
+}

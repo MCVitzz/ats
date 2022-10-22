@@ -1,0 +1,18 @@
+{
+  "table-title": "Users Table",
+  "add-user": "Add User",
+  "delete-user-confirmation-cancel": "Cancel",
+  "delete-user-confirmation-message": "Are you sure you want to delete this User?",
+  "delete-user-confirmation-title": "Confirm",
+  "delete-user-confirmation-confirm": "Delete",
+  "user-modal-label-name": "Name",
+  "user-modal-label-email": "Email",
+  "user-modal-invalid-email": "Invalid Email.",
+  "user-modal-invalid-name": "Name is required.",
+  "user-modal-button-save": "Save",
+  "user-modal-button-delete": "Delete",
+  "user-modal-save-success": "User saved successfully.",
+  "user-modal-save-failure": "There was a problem saving the user.",
+  "user-modal-delete-success": "User deleted successfully.",
+  "user-modal-delete-failure": "There was a problem deleting the user."
+}

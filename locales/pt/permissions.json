@@ -1,0 +1,17 @@
+{
+  "table-title": "Tabela de Permissões",
+  "add-permission": "Adicionar",
+  "delete-permission-confirmation-cancel": "Cancelar",
+  "delete-permission-confirmation-message": "Tem a certeza que pertende eliminar este Permissão?",
+  "delete-permission-confirmation-title": "Confirmação",
+  "delete-permission-confirmation-confirm": "Eliminar",
+  "permission-modal-label-name": "Nome",
+  "permission-modal-invalid-name": "Nome é obrigatório.",
+  "permission-modal-label-email": "Email",
+  "permission-modal-button-save": "Gravar",
+  "permission-modal-button-delete": "Eliminar",
+  "permission-modal-save-success": "Permissão gravado com sucesso.",
+  "permission-modal-save-failure": "Houve um problema a gravar o permissão.",
+  "permission-modal-delete-success": "Permissão eliminado com sucesso.",
+  "permission-modal-delete-failure": "Houve um problema a eliminar o permissão."
+}

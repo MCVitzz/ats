@@ -1,0 +1,10 @@
+{
+  "datatable-page-separator": "of",
+  "datatable-page-size": "Items per page",
+  "log-out-cancel-title": "Confirm Log out",
+  "log-out-cancel-button": "Cancel",
+  "log-out-confirm-button": "Log Out",
+  "log-out-message": "Are you sure you want to log out?",
+  "user-menu-profile": "Profile",
+  "user-menu-log-out": "Log Out"
+}

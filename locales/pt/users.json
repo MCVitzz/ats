@@ -1,0 +1,18 @@
+{
+  "table-title": "Tabela de Utilizadores",
+  "add-user": "Adicionar",
+  "delete-user-confirmation-cancel": "Cancelar",
+  "delete-user-confirmation-message": "Tem a certeza que pertende eliminar este Utilizador?",
+  "delete-user-confirmation-title": "Confirmação",
+  "delete-user-confirmation-confirm": "Eliminar",
+  "user-modal-label-name": "Nome",
+  "user-modal-label-email": "Email",
+  "role-modal-invalid-name": "Nome é obrigatório.",
+  "role-modal-invalid-email": "Email inválido.",
+  "user-modal-button-save": "Gravar",
+  "user-modal-button-delete": "Eliminar",
+  "user-modal-save-success": "Utilizador gravado com sucesso.",
+  "user-modal-save-failure": "Houve um problema a gravar o utilizador.",
+  "user-modal-delete-success": "Utilizador eliminado com sucesso.",
+  "user-modal-delete-failure": "Houve um problema a eliminar o utilizador."
+}

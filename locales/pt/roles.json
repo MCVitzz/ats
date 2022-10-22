@@ -1,0 +1,17 @@
+{
+  "table-title": "Tabela de Papéis",
+  "add-role": "Adicionar",
+  "delete-role-confirmation-cancel": "Cancelar",
+  "delete-role-confirmation-message": "Tem a certeza que pertende eliminar este papel?",
+  "delete-role-confirmation-title": "Confirmação",
+  "delete-role-confirmation-confirm": "Eliminar",
+  "role-modal-label-name": "Nome",
+  "role-modal-invalid-name": "Nome é obrigatório.",
+  "role-modal-label-email": "Email",
+  "role-modal-button-save": "Gravar",
+  "role-modal-button-delete": "Eliminar",
+  "role-modal-save-success": "Papel gravado com sucesso.",
+  "role-modal-save-failure": "Houve um problema a gravar o papel.",
+  "role-modal-delete-success": "Papel eliminado com sucesso.",
+  "role-modal-delete-failure": "Houve um problema a eliminar o papel."
+}

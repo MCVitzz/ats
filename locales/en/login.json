@@ -1,0 +1,12 @@
+{
+  "title": "Customer Portal",
+  "email-label": "Email",
+  "email-error": "Email is required.",
+  "email-error-format": "Email has to be a valid email.",
+  "password-label": "Password",
+  "password-error": "Password is required.",
+  "signIn": "Sign In",
+  "invalidCredentials": "Invalid Credentials.",
+  "forgotPassword": "I forgot my password",
+  "loginSuccess": "Welcome"
+}

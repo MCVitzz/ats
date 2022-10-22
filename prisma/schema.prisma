@@ -1,0 +1,66 @@
+// schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  password  String
+  email     String   @unique
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  tokens    UserPasswordReset[]
+  Candidate Candidate[]
+
+  @@map(name: "users")
+}
+
+model UserPasswordReset {
+  id     String   @id @default(cuid())
+  token  String   @unique
+  userId String   @map(name: "user_id")
+  expiry DateTime
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("user_password_reset")
+}
+
+model Role {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+}
+
+model Permission {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+}
+
+model Candidate {
+  id         String @id @default(cuid())
+  firstName  String @map(name: "first_name")
+  lastName   String @map(name: "last_name")
+  email      String @unique
+  phone      String
+  desiredPay String @map(name: "desired_pay")
+  address    String
+  city       String
+  zipCode    String @map(name: "zip_code")
+  ownerId    String
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  owner User @relation(fields: [ownerId], references: [id])
+}

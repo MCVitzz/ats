@@ -1,0 +1,16 @@
+{
+  "table-title": "Roles Table",
+  "add-role": "Add Role",
+  "delete-role-confirmation-cancel": "Cancel",
+  "delete-role-confirmation-message": "Are you sure you want to delete this role?",
+  "delete-role-confirmation-title": "Confirm",
+  "delete-role-confirmation-confirm": "Delete",
+  "role-modal-label-name": "Name",
+  "role-modal-invalid-name": "Name is required.",
+  "role-modal-button-save": "Save",
+  "role-modal-button-delete": "Delete",
+  "role-modal-save-success": "Role saved successfully.",
+  "role-modal-save-failure": "There was a problem saving the role.",
+  "role-modal-delete-success": "Role deleted successfully.",
+  "role-modal-delete-failure": "There was a problem deleting the role."
+}

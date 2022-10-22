@@ -1,0 +1,15 @@
+{
+  "locales": ["en", "de", "pt"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["common", "login"],
+    "/login": ["login"],
+    "/forgot-password": ["forgot-password"],
+    "/recover-password": ["recover-password"],
+    "/profile": ["profile"],
+    "/admin/users": ["users"],
+    "/admin/roles": ["roles"],
+    "/admin/permissions": ["permissions"],
+    "/candidates": ["candidates"]
+  }
+}

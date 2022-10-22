@@ -1,0 +1,16 @@
+{
+  "table-title": "Permissions Table",
+  "add-permission": "Add Permission",
+  "delete-permission-confirmation-cancel": "Cancel",
+  "delete-permission-confirmation-message": "Are you sure you want to delete this permission?",
+  "delete-permission-confirmation-title": "Confirm",
+  "delete-permission-confirmation-confirm": "Delete",
+  "permission-modal-label-name": "Name",
+  "permission-modal-invalid-name": "Name is required.",
+  "permission-modal-button-save": "Save",
+  "permission-modal-button-delete": "Delete",
+  "permission-modal-save-success": "Permission saved successfully.",
+  "permission-modal-save-failure": "There was a problem saving the permission.",
+  "permission-modal-delete-success": "Permission deleted successfully.",
+  "permission-modal-delete-failure": "There was a problem deleting the permission."
+}
