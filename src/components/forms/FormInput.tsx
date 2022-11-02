@@ -41,7 +41,9 @@ const FormInput: React.FC<FormInputProps> = ({
         autoComplete={!autoComplete ? 'off' : undefined}
         type={type}
         disabled={disabled}
-        {...register(name)}
+        {...register(name, {
+          valueAsNumber: type === 'number',
+        })}
       />
       <FormErrorMessage>{errors[name]?.message?.toString()}</FormErrorMessage>
     </FormControl>
