@@ -38,6 +38,8 @@ model Role {
   name      String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map("roles")
 }
 
 model Permission {
@@ -45,6 +47,8 @@ model Permission {
   name      String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map("permissions")
 }
 
 model Candidate {
@@ -58,9 +62,22 @@ model Candidate {
   city       String
   zipCode    String @map(name: "zip_code")
   ownerId    String
+  tags       Tag[]
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
   owner User @relation(fields: [ownerId], references: [id])
+
+  @@map("candidates")
+}
+
+model Tag {
+  id         String      @id @default(cuid())
+  name       String      @unique
+  createdAt  DateTime    @default(now()) @map(name: "created_at")
+  updatedAt  DateTime    @updatedAt @map(name: "updated_at")
+  candidates Candidate[]
+
+  @@map("tags")
 }

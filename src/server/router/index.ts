@@ -5,6 +5,7 @@ import { rolesRouter } from './roles'
 import { usersRouter } from './users'
 import { permissionsRouter } from './permissions'
 import { candidatesRouter } from './candidates'
+import { tagsRouter } from './tags'
 
 export const appRouter = t.router({
   auth: authRouter,
@@ -12,6 +13,7 @@ export const appRouter = t.router({
   roles: rolesRouter,
   permissions: permissionsRouter,
   candidates: candidatesRouter,
+  tags: tagsRouter,
 })
 
 // export type definition of API

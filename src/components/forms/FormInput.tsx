@@ -5,7 +5,7 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react'
-import { HTMLInputTypeAttribute, useEffect } from 'react'
+import { HTMLInputTypeAttribute } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 interface FormInputProps {
@@ -27,10 +27,6 @@ const FormInput: React.FC<FormInputProps> = ({
     formState: { errors },
     register,
   } = useFormContext()
-
-  useEffect(() => {
-    console.log(errors)
-  }, [errors])
 
   return (
     <FormControl isInvalid={!!errors[name]}>

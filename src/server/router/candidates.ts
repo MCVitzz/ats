@@ -26,6 +26,9 @@ export const candidatesRouter = t.router({
         phone: z.string(),
         zipCode: z.string(),
         ownerId: z.string().optional(),
+        tags: z.array(
+          z.object({ id: z.string().optional(), name: z.string() })
+        ),
       })
       // .refine(({ id, ownerId }) => !xor(!!id, !!ownerId)) //If we have id, we need an ownerId, if not, we create it in business logic
     )

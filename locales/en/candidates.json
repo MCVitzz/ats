@@ -18,6 +18,7 @@
   "candidate-modal-label-zip-code": "Zip-Code",
   "candidate-modal-label-city": "City",
   "candidate-modal-label-status": "Status",
+  "candidate-modal-label-tags": "Tags",
   "candidate-modal-invalid-email": "Invalid email.",
   "candidate-modal-invalid-address": "Address is required.",
   "candidate-modal-invalid-city": "City is required.",

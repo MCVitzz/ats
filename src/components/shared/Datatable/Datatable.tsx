@@ -126,7 +126,7 @@ function Datatable<T>({
             ))
           ) : (
             <Tr>
-              <Td colSpan={2}>
+              <Td colSpan={columns.length}>
                 <Flex w="full" h="full" p={16} justify="center">
                   <Spinner color="brand.500" w={16} h={16} />
                 </Flex>
@@ -136,13 +136,13 @@ function Datatable<T>({
         </Tbody>
         <Tfoot>
           <Tr>
-            <Td colSpan={2}>
+            <Td colSpan={columns.length}>
               <SimpleGrid columns={3} w="full">
                 <Flex align="center" placeSelf="left">
                   <Text color="black" fontSize={12}>
                     {table.getState().pagination.pageIndex + 1}
                     {` ${t('datatable-page-separator')} `}
-                    {table.getPageCount()}
+                    {Math.ceil(table.getPageCount())}
                   </Text>
                 </Flex>
                 <Flex align="center" gap={4} placeSelf="center">

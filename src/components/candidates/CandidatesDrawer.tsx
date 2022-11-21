@@ -16,11 +16,11 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Candidate } from '@prisma/client'
 import useTranslation from 'next-translate/useTranslation'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import FormCreatableSelect from '../forms/FormCreatableSelect'
 import FormInput from '../forms/FormInput'
-import { type SelectOption, Select } from '../shared/Select/Select'
 
 interface CandidateModalProps {
   isOpen: boolean
@@ -33,8 +33,6 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [val1, setVal1] = useState<SelectOption>()
-  const [val2, setVal2] = useState<SelectOption[]>([])
   const { confirmationDialog } = useConfirmationDialog()
   const { t } = useTranslation('candidates')
   const utils = trpc.useContext()
@@ -51,6 +49,17 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
         utils.candidates.getAll.invalidate()
       },
     })
+
+  const { data: tagsRaw } = trpc.tags.getAll.useQuery()
+
+  const tags = useMemo(() => {
+    return (
+      tagsRaw?.map((tag) => ({
+        value: tag.id,
+        label: tag.name,
+      })) || []
+    )
+  }, [tagsRaw])
 
   const toast = useToast()
 
@@ -90,6 +99,7 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
     lastName: z.string().min(1, t('candidate-modal-invalid-last-name')),
     phone: z.string().min(1, t('candidate-modal-invalid-phone')),
     zipCode: z.string().min(1, t('candidate-modal-invalid-zip-code')),
+    tags: z.array(z.object({ value: z.string(), label: z.string() })),
   })
 
   type Schema = z.infer<typeof schema>
@@ -104,6 +114,7 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
         ...data,
         ownerId: candidate?.ownerId,
         id: candidate?.id,
+        tags: data.tags.map((tag) => ({ id: tag.value, name: tag.label })),
       })
       toast({
         title: t('candidate-modal-save-success'),
@@ -180,28 +191,11 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
                     label={t('candidate-modal-label-city')}
                   />
                 </Grid>
-                <Select
-                  options={[
-                    { key: '1', value: 'First' },
-                    { key: '2', value: 'Second' },
-                    { key: '3', value: 'Third' },
-                    { key: '4', value: 'Fourth' },
-                    { key: '5', value: 'Fifth' },
-                  ]}
-                  value={val1}
-                  onChange={(val) => setVal1(val)}
-                />
-                <Select
-                  options={[
-                    { key: '1', value: 'First' },
-                    { key: '2', value: 'Second' },
-                    { key: '3', value: 'Third' },
-                    { key: '4', value: 'Fourth' },
-                    { key: '5', value: 'Fifth' },
-                  ]}
-                  value={val2}
-                  onChange={(val) => setVal2(val)}
-                  multiple
+                <FormCreatableSelect
+                  label={t('candidate-modal-label-tags')}
+                  name="tags"
+                  options={tags}
+                  isMulti
                 />
               </Flex>
             </DrawerBody>

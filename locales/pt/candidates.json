@@ -18,6 +18,7 @@
   "candidate-modal-label-zip-code": "Código-Postal",
   "candidate-modal-label-status": "Estado",
   "candidate-modal-label-city": "Localidade",
+  "candidate-modal-label-tags": "Tags",
   "candidate-modal-invalid-email": "Email inválido.",
   "candidate-modal-invalid-address": "Morada é obrigatória.",
   "candidate-modal-invalid-city": "Localidade é obrigatória.",

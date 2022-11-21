@@ -10,6 +10,7 @@ const saveCandidate = async (
     lastName,
     ownerId,
     phone,
+    tags,
     zipCode,
   }: {
     id?: string
@@ -22,12 +23,16 @@ const saveCandidate = async (
     phone: string
     zipCode: string
     ownerId?: string
+    tags: { id?: string; name: string }[]
   },
   user: SessionUser
 ) => {
   const p_ownerId = ownerId ?? user.id
 
-  console.log({ p_ownerId })
+  await database.tag.createMany({
+    data: tags.filter((t) => !t.id).map((t) => ({ name: t.name })),
+    skipDuplicates: true,
+  })
 
   return await database.candidate.upsert({
     where: {
@@ -42,6 +47,7 @@ const saveCandidate = async (
       lastName,
       phone,
       zipCode,
+      tags: { connect: tags },
       ownerId: p_ownerId,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -53,6 +59,7 @@ const saveCandidate = async (
       desiredPay,
       firstName,
       lastName,
+      tags: { connect: tags },
       phone,
       zipCode,
       ownerId,
