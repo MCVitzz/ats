@@ -8,6 +8,9 @@ const getAllPermissions = async ({
   const rows = await database.permission.findMany({
     skip: pageIndex * pageSize,
     take: pageSize,
+    orderBy: {
+      name: 'asc',
+    },
   })
 
   const count = await database.permission.count()

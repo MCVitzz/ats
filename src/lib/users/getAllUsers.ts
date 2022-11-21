@@ -15,6 +15,9 @@ const getAllUsers = async ({
       createdAt: true,
       updatedAt: true,
     },
+    orderBy: {
+      name: 'asc',
+    },
   })
 
   const count = await database.user.count()

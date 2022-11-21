@@ -16,8 +16,8 @@ model User {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  tokens    UserPasswordReset[]
-  Candidate Candidate[]
+  tokens     UserPasswordReset[]
+  candidates Candidate[]
 
   @@map(name: "users")
 }

@@ -13,7 +13,6 @@ const saveCandidate = async (
     tags,
     zipCode,
   }: {
-    id?: string
     email: string
     address: string
     city: string
@@ -29,8 +28,10 @@ const saveCandidate = async (
 ) => {
   const p_ownerId = ownerId ?? user.id
 
+  const tagNames = tags.map((t) => ({ name: t.name }))
+
   await database.tag.createMany({
-    data: tags.filter((t) => !t.id).map((t) => ({ name: t.name })),
+    data: tagNames,
     skipDuplicates: true,
   })
 
@@ -47,7 +48,7 @@ const saveCandidate = async (
       lastName,
       phone,
       zipCode,
-      tags: { connect: tags },
+      tags: { connect: tagNames },
       ownerId: p_ownerId,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -59,7 +60,7 @@ const saveCandidate = async (
       desiredPay,
       firstName,
       lastName,
-      tags: { connect: tags },
+      tags: { set: tagNames },
       phone,
       zipCode,
       ownerId,

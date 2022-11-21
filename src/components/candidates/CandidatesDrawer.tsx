@@ -1,4 +1,5 @@
 import useConfirmationDialog from '@/hooks/useConfirm'
+import { FullCandidate } from '@/lib/candidates/getAllCandidates'
 import { trpc } from '@/utils/trpc'
 import {
   Button,
@@ -14,7 +15,6 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Candidate } from '@prisma/client'
 import useTranslation from 'next-translate/useTranslation'
 import { useEffect, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -25,7 +25,7 @@ import FormInput from '../forms/FormInput'
 interface CandidateModalProps {
   isOpen: boolean
   onClose(): void
-  candidate?: Candidate
+  candidate?: FullCandidate
 }
 
 const CandidateModal: React.FC<CandidateModalProps> = ({
@@ -53,12 +53,7 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
   const { data: tagsRaw } = trpc.tags.getAll.useQuery()
 
   const tags = useMemo(() => {
-    return (
-      tagsRaw?.map((tag) => ({
-        value: tag.id,
-        label: tag.name,
-      })) || []
-    )
+    return tagsRaw?.map((tag) => ({ label: tag.name, value: tag.id })) || []
   }, [tagsRaw])
 
   const toast = useToast()
@@ -99,7 +94,9 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
     lastName: z.string().min(1, t('candidate-modal-invalid-last-name')),
     phone: z.string().min(1, t('candidate-modal-invalid-phone')),
     zipCode: z.string().min(1, t('candidate-modal-invalid-zip-code')),
-    tags: z.array(z.object({ value: z.string(), label: z.string() })),
+    tags: z
+      .array(z.object({ value: z.string(), label: z.string() }))
+      .optional(),
   })
 
   type Schema = z.infer<typeof schema>
@@ -113,15 +110,20 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
       await addCandidate({
         ...data,
         ownerId: candidate?.ownerId,
-        id: candidate?.id,
-        tags: data.tags.map((tag) => ({ id: tag.value, name: tag.label })),
+        tags:
+          data.tags?.map((tag) => ({ name: tag.label, id: tag.value })) || [],
       })
       toast({
         title: t('candidate-modal-save-success'),
         status: 'success',
         duration: 2000,
       })
-      form.reset(candidate)
+      form.reset({
+        ...candidate,
+        tags:
+          candidate?.tags.map((tag) => ({ value: tag.id, label: tag.name })) ||
+          [],
+      })
       onClose()
     } catch {
       toast({
@@ -133,7 +135,12 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
   }
 
   useEffect(() => {
-    form.reset({ ...candidate })
+    form.reset({
+      ...candidate,
+      tags:
+        candidate?.tags.map((tag) => ({ value: tag.id, label: tag.name })) ||
+        [],
+    })
   }, [candidate, form])
 
   return (
@@ -191,12 +198,14 @@ const CandidateModal: React.FC<CandidateModalProps> = ({
                     label={t('candidate-modal-label-city')}
                   />
                 </Grid>
-                <FormCreatableSelect
-                  label={t('candidate-modal-label-tags')}
-                  name="tags"
-                  options={tags}
-                  isMulti
-                />
+                {tags && (
+                  <FormCreatableSelect
+                    label={t('candidate-modal-label-tags')}
+                    name="tags"
+                    options={tags}
+                    isMulti
+                  />
+                )}
               </Flex>
             </DrawerBody>
             <DrawerFooter justifySelf="end" gap={4}>
